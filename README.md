@@ -2,7 +2,7 @@
 
 Personal portfolio of **Mohsin Ali** — website developer (WordPress · React · PHP) and server administrator from Multan, Pakistan.
 
-**Live:** [mohsinali373.github.io/portfolio](https://mohsinali373.github.io/portfolio/)
+**Live:** [portfolio-ashen-beta-uhtz25qqi8.vercel.app](https://portfolio-ashen-beta-uhtz25qqi8.vercel.app/)
 
 ## Highlights
 
@@ -58,10 +58,15 @@ public/                  favicon, CV
 
 **How the 3D docking works:** every section contains an empty `[data-stage-slot]` box. Each frame the form measures where those boxes are on screen, finds the two it sits between, and interpolates position, size and shape by scroll progress — so it lands correctly at any screen size.
 
-## Deploy (GitHub Pages)
+## Deploy
 
-`.github/workflows/deploy.yml` builds and publishes `dist/` on every push to `main`.
-One-time setup: repository **Settings → Pages → Source: GitHub Actions**.
+The site is hosted on **Vercel** (free Hobby plan), connected to this GitHub repository:
+
+- Every push or merged pull request on **`main`** rebuilds and updates the live site automatically.
+- Every other branch gets its own **preview URL**, so changes can be checked before merging.
+- Vercel detects Vite: build command `npm run build`, output directory `dist`.
+
+A GitHub Pages workflow (`.github/workflows/deploy.yml`) is also included as an alternative host; it only publishes once **Settings → Pages → Source: GitHub Actions** is enabled.
 
 ## Performance & accessibility
 
