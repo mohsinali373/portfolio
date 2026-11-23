@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Local secrets — contains the 21st.dev API key. Copy .mcp.example.json instead.
+.mcp.json
+.env
+.env.*
+
+# Local AI tooling — skills, dev-server launch config and the full upstream
+# skill clones stay on this machine; they are not part of the site.
+.claude/
+.skills-src/
+.mcp.example.json

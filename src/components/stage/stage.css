@@ -1,0 +1,36 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  animation: stage-in 1.6s var(--ease-out) 0.2s both;
+}
+
+.stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  transition: opacity 120ms linear;
+}
+
+
+.stage__fallback {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 45% at 72% 42%, var(--accent-soft), transparent 70%);
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Empty layout boxes the 3D form docks into — they reserve real space in each section. */
+.stage-slot {
+  pointer-events: none;
+}
