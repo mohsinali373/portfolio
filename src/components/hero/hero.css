@@ -1,0 +1,160 @@
+/* NOTE: .hero must not create a stacking context (no z-index / transform /
+   opacity on it) — the name uses z-index -1 to sit behind the WebGL canvas. */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: var(--space-5);
+  padding-top: calc(var(--space-9) + var(--space-3));
+  padding-bottom: var(--space-6);
+}
+
+.hero__top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.hero__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+}
+.hero__dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--success);
+  animation: hero-ping 2.4s var(--ease-out) infinite;
+}
+
+/* Giant name, behind the canvas. It shares the middle grid row with the 3D
+   slot (so the drop floats over it) but stays in normal flow, so it can never
+   overlap the copy above or below — whatever the screen height. */
+.hero__name {
+  position: relative;
+  z-index: -1;
+  grid-row: 2;
+  grid-column: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-size: clamp(5.5rem, 1rem + 21vw, 22rem);
+  font-weight: 700;
+  line-height: 1.02; /* room for the i-dot inside SplitText's clipping masks */
+  letter-spacing: -0.065em;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--ink);
+  pointer-events: none;
+  user-select: none;
+}
+.hero__name-line {
+  display: block;
+}
+.hero__name-line + .hero__name-line {
+  margin-top: -0.24em;
+}
+.hero__name-line--light {
+  font-weight: 200;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+
+.hero__slot {
+  grid-row: 2;
+  grid-column: 1;
+  justify-self: center;
+  align-self: center;
+  width: min(68vw, 52vh);
+  aspect-ratio: 1;
+}
+
+.hero__bottom {
+  grid-row: 3;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-5);
+  align-items: end;
+}
+.hero__role-title {
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+.hero__core {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.hero__lead {
+  max-width: 38ch;
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@keyframes hero-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__name {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.06em;
+    font-size: clamp(6rem, 0.5rem + 16.5vw, 22rem);
+  }
+  .hero__name-line + .hero__name-line {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__bottom {
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: var(--space-7);
+  }
+  .hero__slot {
+    width: min(40vw, 64vh);
+  }
+}
+
+@media (max-width: 479px) {
+  .hero__ctas > * {
+    flex: 1 1 100%;
+  }
+  .hero__ctas .btn {
+    width: 100%;
+  }
+}

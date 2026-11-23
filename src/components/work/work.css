@@ -1,0 +1,199 @@
+.work__head {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+}
+.work__intro {
+  display: grid;
+  gap: var(--space-4);
+}
+.work__slot {
+  width: 100%;
+  height: clamp(150px, 30vw, 280px);
+}
+
+/* Case studies */
+.cases {
+  display: grid;
+  gap: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+}
+
+.case {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+}
+/* Grid items default to min-content width; let the mock shrink to the column. */
+.case > *,
+.work__head > * {
+  min-width: 0;
+}
+
+.case__visual {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  perspective: 1400px;
+}
+.case__tilt {
+  position: relative;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 600ms var(--ease-out);
+}
+.case__visual:hover .case__tilt {
+  transition-duration: 120ms;
+}
+.case__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(60% 60% at var(--gx) var(--gy), rgba(255, 248, 235, 0.14), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.case__visual:hover .case__glare {
+  opacity: 1;
+}
+
+.case__info {
+  display: grid;
+  gap: var(--space-4);
+  align-content: center;
+}
+.case__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.case__index {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.case__title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: var(--tracking-tight);
+}
+.case__summary {
+  max-width: 44ch;
+  font-weight: 300;
+  color: var(--ink-muted);
+}
+/* Separators trail each item, so a wrapped line never starts with one. */
+.case__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+.case__stack li:not(:last-child)::after {
+  content: '/';
+  margin-left: var(--space-3);
+  color: var(--ink-faint);
+}
+.case__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.case__metric {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.case__metric b {
+  display: block;
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--ink);
+}
+.case__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0 1px;
+  background-position: 0 calc(100% - 10px);
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-slow) var(--ease-out);
+}
+.case__link:hover {
+  background-size: 100% 1px;
+}
+.case__link svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.case__link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Results strip — a single typographic row, no boxes. */
+.results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line-strong);
+}
+.results__item {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-1);
+}
+.results__item dt {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.results__item dd {
+  font-size: clamp(2.75rem, 1.8rem + 3.5vw, 5rem);
+  font-weight: 200;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+}
+.results__suffix {
+  color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  .work__head {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+  .work__slot {
+    height: clamp(200px, 22vw, 300px);
+  }
+  .results {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .case {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(3rem, 2rem + 3vw, 6rem);
+  }
+  .case:nth-child(even) .case__visual {
+    order: 2;
+  }
+}

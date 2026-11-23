@@ -1,0 +1,105 @@
+.process__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(110px, 28vw, 260px);
+  align-items: center;
+  gap: var(--space-5);
+  margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+.process__head > div {
+  display: grid;
+  gap: var(--space-5);
+}
+.process__slot {
+  height: clamp(170px, 34vw, 320px);
+}
+
+/* Steps along a rail (vertical on phones, horizontal from tablet up). */
+.process__steps {
+  --progress: 0;
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+  padding-left: var(--space-7);
+}
+.process__rail {
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--line-strong);
+}
+.process__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleY(var(--progress));
+  transform-origin: top;
+}
+
+.process__step {
+  --lit: clamp(0, (var(--progress) - var(--at)) * 20 + 1, 1);
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+}
+.process__node {
+  position: absolute;
+  left: calc(var(--space-7) * -1);
+  top: 6px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+}
+.process__node::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: var(--lit);
+  transform: scale(var(--lit));
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.process__index {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  color: var(--accent);
+}
+.process__title {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+}
+.process__text {
+  max-width: 30ch;
+  font-weight: 300;
+  color: var(--ink-muted);
+}
+
+@media (min-width: 768px) {
+  .process__steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+    padding-left: 0;
+    padding-top: var(--space-7);
+  }
+  .process__rail {
+    left: 0;
+    right: 0;
+    top: 7px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .process__fill {
+    transform: scaleX(var(--progress));
+    transform-origin: left;
+  }
+  .process__node {
+    left: 0;
+    top: calc(var(--space-7) * -1);
+  }
+}

@@ -1,29 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>Mohsin Ali — WordPress Developer</title>
-    <meta name="description" content="Portfolio of Mohsin Ali — Professional WordPress developer with 4 years of experience in website development, WooCommerce setup, custom themes, and server/hosting management." />
-    <meta name="keywords" content="Mohsin Ali, WordPress Developer, WooCommerce Developer, Elementor, cPanel, Server Specialist, Freelance Web Developer, Multan" />
+
+    <title>Mohsin Ali — Full-Stack Web Developer</title>
+    <meta name="description" content="Mohsin Ali — full-stack web developer from Multan, Pakistan. 4 years building fast WordPress, React and PHP websites, WooCommerce stores, technical SEO and server administration." />
+    <meta name="keywords" content="Mohsin Ali, Website Developer, WordPress Developer, React Developer, PHP, WooCommerce, Technical SEO, Server Administration, cPanel, Multan" />
     <meta name="author" content="Mohsin Ali" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Mohsin Ali — WordPress Developer" />
-    <meta property="og:description" content="Professional WordPress developer with 4 years of experience in website development, custom themes, and server management." />
+    <meta name="theme-color" content="#0A0A0C" />
+
+    <meta property="og:title" content="Mohsin Ali — Full-Stack Web Developer" />
+    <meta property="og:description" content="Fast WordPress, React and PHP websites — and the servers behind them." />
     <meta property="og:type" content="website" />
-    
-    <!-- Google Fonts: Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-D7ppl4Rc.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CQGmkhJr.css">
+
+    <!-- Apply the saved theme before first paint to avoid a flash. Dark is the default. -->
+    <script>
+      (function () {
+        var theme = 'dark';
+        try {
+          var saved = localStorage.getItem('ma-theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="padding:24px;font-family:Outfit,sans-serif">Mohsin Ali — Full-Stack Web Developer. Email: mohsinali.seo123@gmail.com</p>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

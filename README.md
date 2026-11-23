@@ -1,53 +1,77 @@
-# Mohsin Ali | WordPress Developer Portfolio
+# Mohsin Ali — Portfolio
 
-Welcome to my professional portfolio website! This project is a modern, high-converting, and luxury static portfolio designed to showcase my skills, projects, and server administration experience.
+Personal portfolio of **Mohsin Ali** — website developer (WordPress · React · PHP) and server administrator from Multan, Pakistan.
 
-It features buttery-smooth scrolling via **Lenis** and premium micro-animations powered by **GSAP (GreenSock Animation Platform)**.
+**Live:** [mohsinali373.github.io/portfolio](https://mohsinali373.github.io/portfolio/)
 
-## 🚀 Live Demo
-You can view the live site here: **[https://mohsinali373.github.io/portfolio/](https://mohsinali373.github.io/portfolio/)**
+## Highlights
 
----
+- **A 3D form that follows the scroll.** One liquid-metal object travels down the page and docks into a reserved spot in every section, morphing into something from the trade:
+  liquid drop (hero) → screen showing a storefront (work) → `</>` code module (stack) → server rack with status LEDs (process) → orbiting core (about) → liquid pool under the footer glass.
+  Its position is a pure function of scroll — it moves as you scroll and stops when you stop.
+- **Crafted case studies** — a WooCommerce store, a zero-downtime server migration dashboard and a Lighthouse-scored business site, each drawn as an interactive UI that tilts toward the cursor.
+- **Liquid-glass footer** — frosted glass that fills in with a wavy liquid edge, a water-lens shader that leaves a calm wake under the cursor, the contact form, links and a giant metallic wordmark.
+- **Dark (default) and light themes**, switched with a circular reveal and remembered between visits.
+- **Custom cursor**, inertial smooth scrolling, staggered reveals — all disabled or simplified for `prefers-reduced-motion`.
+- Fully responsive (checked at 320, 360, 390, 414 and 1440 px — no horizontal scroll or overlapping text).
 
-## 🛠️ Tech Stack & Features
+## Tech stack
 
-- **Core Framework:** React.js & Vite
-- **Styling:** Tailwind CSS (Custom "Outfit" typography loaded globally)
-- **Smooth Scroll:** Lenis Scroll (Inertia momentum scrolling)
-- **Animations:** GSAP & ScrollTrigger reveals
-- **Contact Form:** Integrated with **EmailJS** for direct inbox delivery
+| Area | Tools |
+| --- | --- |
+| UI | React 19, Vite, HTML5, CSS3 (design tokens, container queries), Outfit typeface |
+| 3D | Three.js, React Three Fiber, drei, custom GLSL (superellipsoid morph, simplex-noise liquid surface) |
+| Effects | WebGL2 water-lens shader, canvas-drawn faceplates, View Transitions |
+| Motion | GSAP (ScrollTrigger, SplitText), Lenis |
+| Contact | EmailJS (lazy-loaded) |
 
----
+The site also presents PHP, MySQL, WordPress, WooCommerce, Elementor, technical SEO, Core Web Vitals, Linux/VPS, cPanel/hPanel/Plesk, DNS and SSL work.
 
-## 📂 Repository Structure
+## Run locally
 
-- `index.html` - Main HTML5 semantic page structure.
-- `favicon.svg` - Custom brand favicon.
-- `assets/` - Pre-compiled, highly-optimized production bundles (CSS/JS modules, logo icons, compressed background video, and profile images).
-- `Mohsin_Ali_CV.pdf` - Downloadable curriculum vitae.
+Requires Node.js 20+.
 
----
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build in dist/
+npm run preview  # serve the production build
+```
 
-## ⚙️ How to Host on GitHub Pages (No npm required!)
+## Editing content
 
-This repository contains the pre-built, static production code of my portfolio. To deploy it live under your own GitHub account:
+All copy lives in **`src/data/content.js`** — profile, projects, capabilities, process, experience, certifications, footer links and the EmailJS IDs. The CV is `public/Mohsin_Ali_CV.pdf`.
 
-1. **Create a new Repository** on your GitHub account named `portfolio`.
-2. **Upload all the files** inside this folder directly to the root of the new repository.
-3. Go to the repository **Settings** tab.
-4. Scroll down to the **Pages** section on the left sidebar.
-5. Under **Build and deployment**, select **Deploy from a branch**.
-6. Set the branch to `main` (or `master`) and folder to `/ (root)`.
-7. Click **Save**.
-8. Your portfolio will be live at `https://<your-username>.github.io/portfolio/` within a few minutes!
+## Project layout
 
----
+```
+src/
+  data/content.js        all site copy
+  components/
+    stage/               WebGL stage: LiquidCore (scroll docking), liquid shader,
+                         per-section shapes (keyframes.js), faceplates, studio lights
+    hero/ work/ stack/ process/ about/ footer/ nav/ ui/
+  lib/                   smooth scroll, reveals, theme, device checks, shared motion state
+  styles/                tokens.css (dark + light themes), base.css
+public/                  favicon, CV
+```
 
-## 📞 Let's Connect!
+**How the 3D docking works:** every section contains an empty `[data-stage-slot]` box. Each frame the form measures where those boxes are on screen, finds the two it sits between, and interpolates position, size and shape by scroll progress — so it lands correctly at any screen size.
 
-- **Fiverr Profile:** [fiverr.com/mohsinali3732](https://www.fiverr.com/mohsinali3732)
-- **GitHub Repositories:** [github.com/mohsinali373](https://github.com/mohsinali373)
-- **LinkedIn:** [linkedin.com/in/mohsin-ali-93644a297](http://www.linkedin.com/in/mohsin-ali-93644a297)
-- **Instagram:** [instagram.com/black_devil_official373](https://www.instagram.com/black_devil_official373/)
-- **Email:** [mohsinali.seo123@gmail.com](mailto:mohsinali.seo123@gmail.com)
-- **Phone:** +92 309 7847427
+## Deploy (GitHub Pages)
+
+`.github/workflows/deploy.yml` builds and publishes `dist/` on every push to `main`.
+One-time setup: repository **Settings → Pages → Source: GitHub Actions**.
+
+## Performance & accessibility
+
+- The WebGL stage loads lazily in its own chunk; pixel ratio is capped (2 on desktop, 1.5 on phones) and drops automatically if frames fall; phones get fewer vertices.
+- The footer water shader only renders while ripples are alive.
+- Keyboard-navigable tabs and menu, visible focus, skip link, labelled form fields with inline errors, honeypot spam guard.
+
+## Contact
+
+- Email: [mohsinali.seo123@gmail.com](mailto:mohsinali.seo123@gmail.com)
+- GitHub: [github.com/mohsinali373](https://github.com/mohsinali373)
+- LinkedIn: [linkedin.com/in/mohsin-ali-93644a297](https://www.linkedin.com/in/mohsin-ali-93644a297)
+- Fiverr: [fiverr.com/mohsinali3732](https://www.fiverr.com/mohsinali3732)
