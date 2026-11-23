@@ -66,8 +66,6 @@ The site is hosted on **Vercel** (free Hobby plan), connected to this GitHub rep
 - Every other branch gets its own **preview URL**, so changes can be checked before merging.
 - Vercel detects Vite: build command `npm run build`, output directory `dist`.
 
-A GitHub Pages workflow (`.github/workflows/deploy.yml`) is also included as an alternative host; it only publishes once **Settings → Pages → Source: GitHub Actions** is enabled.
-
 ## Performance & accessibility
 
 - The WebGL stage loads lazily in its own chunk; pixel ratio is capped (2 on desktop, 1.5 on phones) and drops automatically if frames fall; phones get fewer vertices.
